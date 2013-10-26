@@ -1,0 +1,57 @@
+<!doctype HTML>
+<html>
+    <head>
+        <title>iTunes Remote</title>
+        <link href='static/styles.css' type='text/css' rel='stylesheet'>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>iTunes Controller</h1>
+        </header>
+        <div class='container'>
+            <div class='nowplaying'>
+                <div class='songinfo'>
+                    <span class='artist'>Artist</span>
+                    <span class='song'>Song</span>
+                    <span class='album'>Album</span>
+                </div>
+            </div>
+            <div class='controls'>
+                <span class='prev'><a href='#'>Prev</a></span>
+                <span class='toggle'><a href='#'>Play/Pause</a></span>
+                <span class='next'><a href='#'>Next</a></span>
+            </div>
+        </div>
+        <footer>
+            &copy; George Lifchits, 2013
+        </footer>
+        <script type='text/javascript'>
+            $(function() {
+                var songInfo = function() {
+                    $.getJSON('/get_song', function(data) {
+                        $('.nowplaying .artist').text(data.artist);
+                        $('.nowplaying .song').text(data.name);
+                        $('.nowplaying .album').text(data.album);
+                    });
+                }
+                songInfo();
+                $('.nowplaying').click(function() {
+                    songInfo();
+                })
+                $('.toggle a').click(function() {
+                    $.post('/toggle');
+                    songInfo();
+                })
+                $('.prev a').click(function() {
+                    $.post('/prev');
+                    songInfo();
+                })
+                $('.next a').click(function() {
+                    $.post('/next');
+                    songInfo();
+                })
+            });
+        </script>
+    </body>
+</html>

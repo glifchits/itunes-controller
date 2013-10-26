@@ -1,0 +1,79 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0 auto;
+    max-width: 700px;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+header {
+    margin: 0;
+    background-color: #ddd;
+    border-radius: 0 0 10px 10px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    padding-top: 100px;
+    padding-bottom: 20px;
+    font-size: 24px;
+    color: #777;
+}
+
+
+.container {
+    margin: 30px 0;
+    padding: 50px;
+    border: 2px solid lightblue;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.container .nowplaying {
+}
+.container .nowplaying * {
+    display: block;
+    margin: 7px 0;
+}
+.container .nowplaying .artist {
+    font-weight: bold;
+    font-size: 30px;
+}
+.container .nowplaying .song {
+    font-size: 26px;
+}
+.container .nowplaying .album {
+    font-size: 20px;
+    color: #444;
+}
+
+.container .controls {
+    margin-top: 40px;
+}
+.container .controls span {
+    margin: 0 10px;
+    padding: 14px;
+    font-weight: bold;
+    border-radius: 100px;
+    background-color: #333;
+    display: inline-block;
+}
+.container .controls span a {
+    text-decoration: none;
+    color: white;
+}
+.container .controls span:hover {
+    background-color: #444;
+    cursor: pointer;
+}
+
+
+footer {
+    color: #bbb;
+    text-align: center;
+}
