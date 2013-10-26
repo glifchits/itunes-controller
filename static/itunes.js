@@ -1,5 +1,3 @@
-var drawRating = function() {
-}
 var songInfo = function() {
     $.getJSON('/get_song', function(data) {
         console.debug(data)
@@ -15,7 +13,6 @@ var songInfo = function() {
                 $(this).addClass('no-star')
             i++;
         });
-        drawRating();
     });
 }
 var setRating = function(obj) {
@@ -38,37 +35,30 @@ var setRating = function(obj) {
             'rating' : idx * 20
         });
     });
-    drawRating();
 }
 $(function() {
     songInfo();
-    drawRating();
     $('.nowplaying').click(function() {
         console.debug('refreshing song info');
         songInfo();
-        drawRating();
     })
     $('.toggle a').click(function() {
         console.debug('play/pause song');
         $.post('/toggle');
         songInfo();
-        drawRating();
     })
     $('.prev a').click(function() {
         console.debug('prev song');
         $.post('/prev');
         songInfo();
-        drawRating();
     })
     $('.next a').click(function() {
         console.debug('next song');
         $.post('/next');
         songInfo();
-        drawRating();
     })
     $('.rating').hover(function() {
         setRating(this);
         songInfo();
-        drawRating();
     })
 });
