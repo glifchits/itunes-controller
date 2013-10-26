@@ -34,6 +34,7 @@ h1 {
     text-align: center;
 }
 
+/* ----------------------- SONG INFO ---------------------------------------*/
 .container .nowplaying {
 }
 .container .nowplaying * {
@@ -52,6 +53,20 @@ h1 {
     color: #444;
 }
 
+
+/* ----------------------- STARS -------------------------------------------*/
+.songstate .rating {
+    display: inline-block;
+    padding: 20px 0;
+}
+.songstate .rating .star {
+    font-size: 20px;
+    margin: 5px;
+}
+.songstate .rating .star.no-star {
+    opacity: 0.2;
+}
+/* ----------------------- CONTROLS ----------------------------------------*/
 .container .controls {
     margin-top: 40px;
 }
@@ -72,6 +87,8 @@ h1 {
     cursor: pointer;
 }
 
+
+/* ----------------------- FOOTER ------------------------------------------*/
 
 footer {
     color: #bbb;
