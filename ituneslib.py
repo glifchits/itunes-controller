@@ -42,10 +42,15 @@ class iTunes:
         info = {
             'name': track.Name,
             'artist': track.Artist,
-            'album': track.Album
+            'album': track.Album,
+            'rating': track.Rating
         }
         return info
 
+    def set_rating(self, rating):
+        track = self.itunes.CurrentTrack
+        track.Rating = rating
+        return track.Rating
 
 
 if __name__ == "__main__":
