@@ -1,18 +1,25 @@
-var songInfo = function() {
-    $.getJSON('/get_song', function(data) {
-        console.debug(data)
-        $('.nowplaying .artist').text(data.artist);
-        $('.nowplaying .song').text(data.name);
-        $('.nowplaying .album').text(data.album);
+songData = {}
 
-        var i = 0;
-        $('.songstate .rating .star').each(function() {
-            if (i < data.rating / 20)
-                $(this).removeClass('no-star')
-            else
-                $(this).addClass('no-star')
-            i++;
-        });
+var songInfo = function() {
+    $('.nowplaying .artist').text(songData.artist);
+    $('.nowplaying .song').text(songData.name);
+    $('.nowplaying .album').text(songData.album);
+
+    var i = 0;
+    $('.songstate .rating .star').each(function() {
+        if (i < songData.rating / 20)
+            $(this).removeClass('no-star')
+        else
+            $(this).addClass('no-star')
+        i++;
+    });
+}
+
+var refreshSongInfo = function() {
+    $.getJSON('/get_song', function(data) {
+        console.log('get: song info', data)
+        songData = data;
+        songInfo();
     });
 }
 var setRating = function(obj) {
@@ -33,29 +40,32 @@ var setRating = function(obj) {
         console.debug('star', idx, 'was clicked');
         $.post('/set_rating', {
             'rating' : idx * 20
+        }, function() {
+            refreshSongInfo();
         });
     });
 }
 $(function() {
-    songInfo();
+    refreshSongInfo();
+    
     $('.nowplaying').click(function() {
         console.debug('refreshing song info');
-        songInfo();
+        refreshSongInfo();
     })
     $('.toggle a').click(function() {
         console.debug('play/pause song');
         $.post('/toggle');
-        songInfo();
+        refreshSongInfo();
     })
     $('.prev a').click(function() {
         console.debug('prev song');
         $.post('/prev');
-        songInfo();
+        refreshSongInfo();
     })
     $('.next a').click(function() {
         console.debug('next song');
         $.post('/next');
-        songInfo();
+        refreshSongInfo();
     })
     $('.rating').hover(function() {
         setRating(this);
